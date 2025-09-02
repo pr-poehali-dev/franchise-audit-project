@@ -43,8 +43,8 @@ export default function Index() {
 
     // Запуск анимации счетчиков с задержкой
     setTimeout(() => animateCounter(setSavedMoney, 47, 2000), 500);
-    setTimeout(() => animateCounter(setConsultationsGiven, 340, 2500), 800);
-    setTimeout(() => animateCounter(setFranchisesChecked, 150, 2200), 1100);
+    setTimeout(() => animateCounter(setConsultationsGiven, 125, 2500), 800);
+    setTimeout(() => animateCounter(setFranchisesChecked, 99, 2200), 1100);
   }, []);
 
   // Smooth scroll функция
