@@ -329,7 +329,7 @@ export default function Index() {
           <div className="animate-fade-in">
             <Badge variant="secondary" className="mb-8 px-6 py-2 text-sm font-medium">
               <Icon name="Shield" size={16} className="mr-2" />
-              15+ лет экспертного опыта
+              7+ лет экспертного опыта
             </Badge>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8">
               <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
@@ -345,7 +345,7 @@ export default function Index() {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
-              Профессиональный аудит франшизы от экспертов с 15-летним опытом. 
+              Профессиональный аудит франшизы от экспертов с 7-летним опытом. 
               Получите независимый вердикт <span className="text-accent font-semibold">«СТОИТ»</span> или 
               <span className="text-destructive font-semibold"> «НЕ СТОИТ»</span> покупать и защитите свои инвестиции.
             </p>
@@ -637,7 +637,7 @@ export default function Index() {
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl font-bold mb-4">Аудит франшиз под ключ</h3>
           <p className="text-white/70 mb-6">
-            Профессиональная экспертиза с 15-летним опытом
+            Профессиональная экспертиза с 7-летним опытом
           </p>
           <div className="flex justify-center gap-6">
             <Button variant="ghost" onClick={() => setIsModalOpen(true)} className="text-white hover:text-white/80">
