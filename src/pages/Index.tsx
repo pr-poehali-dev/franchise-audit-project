@@ -378,7 +378,7 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button 
                 size="lg" 
                 onClick={() => setIsModalOpen(true)}
@@ -386,15 +386,6 @@ export default function Index() {
               >
                 <Icon name="Phone" size={20} className="mr-2" />
                 Получить бесплатную консультацию
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                onClick={() => scrollToSection('faq')}
-                className="px-8 py-4 text-lg font-semibold border-2 hover:bg-muted/50 transition-all duration-300"
-              >
-                <Icon name="FileText" size={20} className="mr-2" />
-                Узнать стоимость
               </Button>
             </div>
           </div>
