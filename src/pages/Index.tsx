@@ -452,7 +452,7 @@ export default function Index() {
               Мы проводим полноценное расследование вместо вас. 
               <span className="text-accent">Спите спокойно</span>, пока мы проверяем.
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-3xl font-semibold text-muted-foreground max-w-3xl mx-auto">
               Что входит в наш комплексный аудит под ключ
             </p>
           </div>
