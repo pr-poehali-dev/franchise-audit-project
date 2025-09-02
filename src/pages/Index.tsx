@@ -632,10 +632,7 @@ export default function Index() {
                 Заказать аудит со скидкой 10%
               </Button>
               <div className="max-w-2xl mx-auto">
-                <Badge variant="secondary" className="px-6 py-2 text-base bg-white/20 text-white border-white/30">
-                  <Icon name="Gift" size={16} className="mr-2" />
-                  Бонус 59,900₽ при заказе сегодня
-                </Badge>
+                <Badge variant="secondary" className="px-6 py-2 text-base bg-white/20 text-white border-white/30"></Badge>
                 <p className="text-sm mt-4 opacity-80">
                   Только для тех, кто прямо сейчас нажмет кнопку, мы забронируем 3 бонуса из сферы бизнеса 
                   на общую сумму 59,900 руб. При подписании Договора на работу с нами, вы получите 
