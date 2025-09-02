@@ -1,12 +1,70 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Icon from '@/components/ui/icon';
 
 export default function Index() {
   const [isHovered, setIsHovered] = useState<string | null>(null);
+  const [savedMoney, setSavedMoney] = useState(0);
+  const [consultationsGiven, setConsultationsGiven] = useState(0);
+  const [franchisesChecked, setFranchisesChecked] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    franchise: '',
+    budget: '',
+    message: ''
+  });
+
+  // Анимированные счетчики
+  useEffect(() => {
+    const animateCounter = (setter: (value: number) => void, target: number, duration: number) => {
+      let start = 0;
+      const increment = target / (duration * 60 / 1000); // 60fps
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+          setter(target);
+          clearInterval(timer);
+        } else {
+          setter(Math.floor(start));
+        }
+      }, 16.67); // ~60fps
+    };
+
+    // Запуск анимации счетчиков с задержкой
+    setTimeout(() => animateCounter(setSavedMoney, 47, 2000), 500);
+    setTimeout(() => animateCounter(setConsultationsGiven, 340, 2500), 800);
+    setTimeout(() => animateCounter(setFranchisesChecked, 150, 2200), 1100);
+  }, []);
+
+  // Smooth scroll функция
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    setIsModalOpen(false);
+    // Здесь будет отправка данных на сервер
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
 
   const problems = [
     {
@@ -134,10 +192,138 @@ export default function Index() {
     }
   ];
 
+  const ContactModal = () => (
+    <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold text-center">Получить консультацию</DialogTitle>
+          <DialogDescription className="text-center">
+            Оставьте свои контакты и мы свяжемся с вами в течение 30 минут
+          </DialogDescription>
+        </DialogHeader>
+        <form onSubmit={handleFormSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="name">Имя *</Label>
+            <Input
+              id="name"
+              value={formData.name}
+              onChange={(e) => handleInputChange('name', e.target.value)}
+              placeholder="Ваше имя"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="phone">Телефон *</Label>
+            <Input
+              id="phone"
+              value={formData.phone}
+              onChange={(e) => handleInputChange('phone', e.target.value)}
+              placeholder="+7 (999) 123-45-67"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => handleInputChange('email', e.target.value)}
+              placeholder="your@email.com"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="franchise">Какую франшизу рассматриваете?</Label>
+            <Input
+              id="franchise"
+              value={formData.franchise}
+              onChange={(e) => handleInputChange('franchise', e.target.value)}
+              placeholder="Название франшизы"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="budget">Планируемый бюджет</Label>
+            <Select onValueChange={(value) => handleInputChange('budget', value)}>
+              <SelectTrigger>
+                <SelectValue placeholder="Выберите диапазон" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="500k-1m">500 тыс - 1 млн ₽</SelectItem>
+                <SelectItem value="1m-3m">1 - 3 млн ₽</SelectItem>
+                <SelectItem value="3m-5m">3 - 5 млн ₽</SelectItem>
+                <SelectItem value="5m+">Более 5 млн ₽</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="message">Дополнительная информация</Label>
+            <Textarea
+              id="message"
+              value={formData.message}
+              onChange={(e) => handleInputChange('message', e.target.value)}
+              placeholder="Расскажите подробнее о ваших планах..."
+              rows={3}
+            />
+          </div>
+          <Button type="submit" className="w-full bg-gradient-to-r from-primary to-secondary">
+            <Icon name="Send" size={20} className="mr-2" />
+            Отправить заявку
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
+      <ContactModal />
+      
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md border-b z-50">
+        <div className="max-w-7xl mx-auto px-4 py-3">
+          <div className="flex justify-between items-center">
+            <div className="font-bold text-xl text-primary">Аудит Франшиз</div>
+            <div className="hidden md:flex space-x-6">
+              <button 
+                onClick={() => scrollToSection('hero')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Главная
+              </button>
+              <button 
+                onClick={() => scrollToSection('problems')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Проблемы
+              </button>
+              <button 
+                onClick={() => scrollToSection('solution')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Решение
+              </button>
+              <button 
+                onClick={() => scrollToSection('testimonials')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Отзывы
+              </button>
+              <button 
+                onClick={() => scrollToSection('faq')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                FAQ
+              </button>
+            </div>
+            <Button size="sm" onClick={() => setIsModalOpen(true)}>
+              Консультация
+            </Button>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-4 py-20 lg:py-32">
+      <section id="hero" className="relative overflow-hidden px-4 py-20 lg:py-32 pt-32">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5" />
         <div className="relative max-w-7xl mx-auto text-center">
           <div className="animate-fade-in">
@@ -163,9 +349,39 @@ export default function Index() {
               Получите независимый вердикт <span className="text-accent font-semibold">«СТОИТ»</span> или 
               <span className="text-destructive font-semibold"> «НЕ СТОИТ»</span> покупать и защитите свои инвестиции.
             </p>
+            
+            {/* Анимированные счетчики */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
+              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20 animate-scale-in">
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
+                  {savedMoney}+ <span className="text-2xl">млн ₽</span>
+                </div>
+                <p className="text-muted-foreground font-medium">
+                  сэкономлено клиентами
+                </p>
+              </div>
+              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20 animate-scale-in" style={{ animationDelay: '200ms' }}>
+                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">
+                  {consultationsGiven}+
+                </div>
+                <p className="text-muted-foreground font-medium">
+                  консультаций проведено
+                </p>
+              </div>
+              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20 animate-scale-in" style={{ animationDelay: '400ms' }}>
+                <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">
+                  {franchisesChecked}+
+                </div>
+                <p className="text-muted-foreground font-medium">
+                  франшиз проверено
+                </p>
+              </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
+                onClick={() => setIsModalOpen(true)}
                 className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-lg hover:shadow-xl animate-scale-in"
               >
                 <Icon name="Phone" size={20} className="mr-2" />
@@ -174,6 +390,7 @@ export default function Index() {
               <Button 
                 variant="outline" 
                 size="lg" 
+                onClick={() => scrollToSection('faq')}
                 className="px-8 py-4 text-lg font-semibold border-2 hover:bg-muted/50 transition-all duration-300"
               >
                 <Icon name="FileText" size={20} className="mr-2" />
@@ -185,7 +402,7 @@ export default function Index() {
       </section>
 
       {/* Problems Section */}
-      <section className="px-4 py-20 bg-muted/30">
+      <section id="problems" className="px-4 py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -222,7 +439,7 @@ export default function Index() {
       </section>
 
       {/* Solution Section */}
-      <section className="px-4 py-20">
+      <section id="solution" className="px-4 py-20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -309,6 +526,7 @@ export default function Index() {
           <Button 
             size="lg" 
             variant="secondary"
+            onClick={() => setIsModalOpen(true)}
             className="px-8 py-4 text-lg font-semibold bg-white text-primary hover:bg-white/90 animate-scale-in"
           >
             <Icon name="Phone" size={20} className="mr-2" />
@@ -318,7 +536,7 @@ export default function Index() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="px-4 py-20">
+      <section id="testimonials" className="px-4 py-20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -361,7 +579,7 @@ export default function Index() {
       </section>
 
       {/* FAQ Section */}
-      <section className="px-4 py-20 bg-muted/30">
+      <section id="faq" className="px-4 py-20 bg-muted/30">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -407,6 +625,7 @@ export default function Index() {
             <div className="space-y-6">
               <Button 
                 size="lg" 
+                onClick={() => setIsModalOpen(true)}
                 className="px-12 py-4 text-xl font-bold bg-white text-primary hover:bg-white/90 animate-scale-in shadow-2xl"
               >
                 <Icon name="Zap" size={24} className="mr-3" />
@@ -436,11 +655,11 @@ export default function Index() {
             Профессиональная экспертиза с 15-летним опытом
           </p>
           <div className="flex justify-center gap-6">
-            <Button variant="ghost" className="text-white hover:text-white/80">
+            <Button variant="ghost" onClick={() => setIsModalOpen(true)} className="text-white hover:text-white/80">
               <Icon name="Phone" size={20} className="mr-2" />
               Позвонить
             </Button>
-            <Button variant="ghost" className="text-white hover:text-white/80">
+            <Button variant="ghost" onClick={() => setIsModalOpen(true)} className="text-white hover:text-white/80">
               <Icon name="Mail" size={20} className="mr-2" />
               Написать
             </Button>
