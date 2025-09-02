@@ -733,41 +733,17 @@ export default function Index() {
               Скачайте его прямо сейчас и начните переговоры с франчайзером с полным пониманием текущей ситуации.
             </p>
             
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="exit-email" className="text-sm font-semibold text-foreground">
-                  Ваш действующий email
-                </Label>
-                <Input
-                  id="exit-email"
-                  type="email"
-                  placeholder="example@mail.com"
-                  value={exitIntentEmail}
-                  onChange={(e) => setExitIntentEmail(e.target.value)}
-                  className="mt-2 border-2 border-muted focus:border-primary"
-                />
-              </div>
-              
-              <Button 
-                size="lg" 
-                onClick={() => {
-                  if (exitIntentEmail) {
-                    console.log('Скачивание чек-листа для:', exitIntentEmail);
-                    setIsExitIntentModalOpen(false);
-                  }
-                }}
-                disabled={!exitIntentEmail}
-                className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                <Icon name="Download" size={20} className="mr-2" />
-                Скачать чек-лист бесплатно
-              </Button>
-            </div>
-            
-            <p className="text-xs text-muted-foreground text-center leading-relaxed">
-              Подписываясь, вы соглашаетесь на получение информационных email-сообщений от ООО "Гранд Макс". 
-              Вы можете отписаться в любой момент.
-            </p>
+            <Button 
+              size="lg" 
+              onClick={() => {
+                window.open('https://t.me/analizfrhot_bot', '_blank');
+                setIsExitIntentModalOpen(false);
+              }}
+              className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <Icon name="Download" size={20} className="mr-2" />
+              Скачать чек-лист бесплатно
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
