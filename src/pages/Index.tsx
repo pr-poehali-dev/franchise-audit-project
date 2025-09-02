@@ -315,7 +315,7 @@ export default function Index() {
                 FAQ
               </button>
             </div>
-            <Button size="sm" onClick={() => setIsModalOpen(true)}>
+            <Button size="sm" onClick={() => window.open('https://t.me/analizfr_bot', '_blank')}>
               Консультация
             </Button>
           </div>
@@ -383,7 +383,7 @@ export default function Index() {
               <div className="flex justify-center lg:justify-start">
                 <Button 
                   size="lg" 
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => window.open('https://t.me/analizfr_bot', '_blank')}
                   className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-lg hover:shadow-xl animate-scale-in"
                 >
                   <Icon name="Phone" size={20} className="mr-2" />
@@ -532,7 +532,7 @@ export default function Index() {
           <Button 
             size="lg" 
             variant="secondary"
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => window.open('https://t.me/analizfr_bot', '_blank')}
             className="px-8 py-4 text-lg font-semibold bg-white text-primary hover:bg-white/90 animate-scale-in"
           >
             <Icon name="Phone" size={20} className="mr-2" />
@@ -631,7 +631,7 @@ export default function Index() {
             <div className="space-y-6">
               <Button 
                 size="lg" 
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => window.open('https://t.me/analizfr_bot', '_blank')}
                 className="px-12 py-4 text-xl font-bold bg-white text-primary hover:bg-white/90 animate-scale-in shadow-2xl"
               >Получить бесплатную консультацию</Button>
               <div className="max-w-2xl mx-auto">
