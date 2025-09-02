@@ -605,8 +605,8 @@ export default function Index() {
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
               Примите самое важное бизнес-решение
             </h2>
-            <h3 className="text-2xl md:text-3xl mb-8 opacity-90">
-              решение не терять <span className="text-accent">свои деньги</span>
+            <h3 className="text-2xl md:text-3xl mb-8 opacity-90 text-red-500">
+              решение не терять свои деньги
             </h3>
             <p className="text-xl mb-12 opacity-90 max-w-3xl mx-auto leading-relaxed">
               Выбор франшизы определяет ваши доходы на годы вперед. 
