@@ -627,10 +627,7 @@ export default function Index() {
                 size="lg" 
                 onClick={() => setIsModalOpen(true)}
                 className="px-12 py-4 text-xl font-bold bg-white text-primary hover:bg-white/90 animate-scale-in shadow-2xl"
-              >
-                <Icon name="Zap" size={24} className="mr-3" />
-                Заказать аудит со скидкой 10%
-              </Button>
+              >Получить бесплатную консультацию</Button>
               <div className="max-w-2xl mx-auto">
                 <Badge variant="secondary" className="px-6 py-2 text-base bg-white/20 text-white border-white/30"></Badge>
                 <p className="text-sm mt-4 opacity-80">
