@@ -650,10 +650,20 @@ export default function Index() {
       <footer className="px-4 py-12 bg-foreground text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl font-bold mb-4">Аудит франшиз под ключ</h3>
-          <p className="text-white/70 mb-6">
+          <p className="text-white/70 mb-8">
             Профессиональная экспертиза с 7-летним опытом
           </p>
-
+          
+          <div className="border-t border-white/20 pt-6 space-y-3">
+            <div className="text-sm text-white/60 leading-relaxed">
+              <p className="mb-2">ООО «ГРАНД МАКС»</p>
+              <p className="mb-2">ИНН/КПП 1658158969/165801001, ОГРН 1141690064383</p>
+              <p className="mb-4">Юридический адрес: 420039, г.Казань, ул.Восход, д.23, офис 10</p>
+            </div>
+            <div className="text-sm text-white/50">
+              © 2025
+            </div>
+          </div>
         </div>
       </footer>
     </div>
