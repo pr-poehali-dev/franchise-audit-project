@@ -325,68 +325,83 @@ export default function Index() {
       {/* Hero Section */}
       <section id="hero" className="relative overflow-hidden px-4 py-20 lg:py-32 pt-32">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5" />
-        <div className="relative max-w-7xl mx-auto text-center">
-          <div className="animate-fade-in">
-            <Badge variant="secondary" className="mb-8 px-6 py-2 text-sm font-medium">
-              <Icon name="Shield" size={16} className="mr-2" />
-              7+ лет экспертного опыта
-            </Badge>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8">
-              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                Перестаньте гадать.
-              </span>
-              <br />
-              <span className="text-foreground">
-                Узнайте, окупится ли ваша франшиза
-              </span>
-              <br />
-              <span className="text-muted-foreground text-2xl md:text-4xl lg:text-5xl">
-                до того, как вы отдадите деньги
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
-              Профессиональный аудит франшизы от экспертов с 7-летним опытом. 
-              Получите независимый вердикт <span className="text-accent font-semibold">«СТОИТ»</span> или 
-              <span className="text-destructive font-semibold"> «НЕ СТОИТ»</span> покупать и защитите свои инвестиции.
-            </p>
-            
-            {/* Анимированные счетчики */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
-              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20 animate-scale-in">
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
-                  {savedMoney}+ <span className="text-2xl">млн ₽</span>
+        <div className="relative max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Левая колонка с текстом */}
+            <div className="text-center lg:text-left animate-fade-in">
+              <Badge variant="secondary" className="mb-8 px-6 py-2 text-sm font-medium">
+                <Icon name="Shield" size={16} className="mr-2" />
+                7+ лет экспертного опыта
+              </Badge>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8">
+                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                  Перестаньте гадать.
+                </span>
+                <br />
+                <span className="text-foreground">
+                  Узнайте, окупится ли ваша франшиза
+                </span>
+                <br />
+                <span className="text-muted-foreground text-xl md:text-2xl lg:text-3xl">
+                  до того, как вы отдадите деньги
+                </span>
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+                Профессиональный аудит франшизы от экспертов с 7-летним опытом. 
+                Получите независимый вердикт <span className="text-accent font-semibold">«СТОИТ»</span> или 
+                <span className="text-destructive font-semibold"> «НЕ СТОИТ»</span> покупать и защитите свои инвестиции.
+              </p>
+              
+              {/* Анимированные счетчики */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="text-center p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20 animate-scale-in">
+                  <div className="text-2xl md:text-3xl font-bold text-primary mb-1">
+                    {savedMoney}+ <span className="text-lg">млн ₽</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground font-medium">
+                    сэкономлено клиентами
+                  </p>
                 </div>
-                <p className="text-muted-foreground font-medium">
-                  сэкономлено клиентами
-                </p>
+                <div className="text-center p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20 animate-scale-in" style={{ animationDelay: '200ms' }}>
+                  <div className="text-2xl md:text-3xl font-bold text-accent mb-1">
+                    {consultationsGiven}+
+                  </div>
+                  <p className="text-sm text-muted-foreground font-medium">
+                    консультаций проведено
+                  </p>
+                </div>
+                <div className="text-center p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20 animate-scale-in" style={{ animationDelay: '400ms' }}>
+                  <div className="text-2xl md:text-3xl font-bold text-secondary mb-1">
+                    {franchisesChecked}+
+                  </div>
+                  <p className="text-sm text-muted-foreground font-medium">
+                    франшиз проверено
+                  </p>
+                </div>
               </div>
-              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20 animate-scale-in" style={{ animationDelay: '200ms' }}>
-                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">
-                  {consultationsGiven}+
-                </div>
-                <p className="text-muted-foreground font-medium">
-                  консультаций проведено
-                </p>
-              </div>
-              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20 animate-scale-in" style={{ animationDelay: '400ms' }}>
-                <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">
-                  {franchisesChecked}+
-                </div>
-                <p className="text-muted-foreground font-medium">
-                  франшиз проверено
-                </p>
+
+              <div className="flex justify-center lg:justify-start">
+                <Button 
+                  size="lg" 
+                  onClick={() => setIsModalOpen(true)}
+                  className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-lg hover:shadow-xl animate-scale-in"
+                >
+                  <Icon name="Phone" size={20} className="mr-2" />
+                  Получить бесплатную консультацию
+                </Button>
               </div>
             </div>
-
-            <div className="flex justify-center">
-              <Button 
-                size="lg" 
-                onClick={() => setIsModalOpen(true)}
-                className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-lg hover:shadow-xl animate-scale-in"
-              >
-                <Icon name="Phone" size={20} className="mr-2" />
-                Получить бесплатную консультацию
-              </Button>
+            
+            {/* Правая колонка с изображением */}
+            <div className="flex justify-center lg:justify-end animate-fade-in" style={{ animationDelay: '300ms' }}>
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-2xl transform rotate-3"></div>
+                <img 
+                  src="https://cdn.poehali.dev/files/8f5d747f-dd04-4e50-a45c-e03b319f7be1.jpg"
+                  alt="Профессиональный бизнес-аналитик изучает показатели франшизы"
+                  className="relative rounded-2xl shadow-2xl w-full max-w-lg h-auto object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
