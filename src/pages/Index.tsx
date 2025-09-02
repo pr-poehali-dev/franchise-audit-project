@@ -16,6 +16,9 @@ export default function Index() {
   const [consultationsGiven, setConsultationsGiven] = useState(0);
   const [franchisesChecked, setFranchisesChecked] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isExitIntentModalOpen, setIsExitIntentModalOpen] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
+  const [exitIntentEmail, setExitIntentEmail] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -46,6 +49,52 @@ export default function Index() {
     setTimeout(() => animateCounter(setConsultationsGiven, 125, 2500), 800);
     setTimeout(() => animateCounter(setFranchisesChecked, 99, 2200), 1100);
   }, []);
+
+  // Отслеживание взаимодействий пользователя и pop-up при выходе
+  useEffect(() => {
+    // Отслеживание клика на кнопки консультации
+    const handleTelegramClick = () => {
+      setHasUserInteracted(true);
+    };
+
+    // Отслеживание попытки покинуть страницу
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0 && !hasUserInteracted && !isExitIntentModalOpen) {
+        setIsExitIntentModalOpen(true);
+      }
+    };
+
+    // Отслеживание закрытия вкладки/окна
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (!hasUserInteracted && !isExitIntentModalOpen) {
+        setIsExitIntentModalOpen(true);
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+
+    // Добавляем обработчики событий
+    document.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // Получаем все кнопки консультации и добавляем обработчики
+    const consultationButtons = document.querySelectorAll('button');
+    consultationButtons.forEach(button => {
+      const buttonText = button.textContent?.toLowerCase() || '';
+      if (buttonText.includes('консультация') || buttonText.includes('консультацию')) {
+        button.addEventListener('click', handleTelegramClick);
+      }
+    });
+
+    // Очистка обработчиков при размонтировании
+    return () => {
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      consultationButtons.forEach(button => {
+        button.removeEventListener('click', handleTelegramClick);
+      });
+    };
+  }, [hasUserInteracted, isExitIntentModalOpen]);
 
   // Smooth scroll функция
   const scrollToSection = (sectionId: string) => {
@@ -666,6 +715,62 @@ export default function Index() {
           </div>
         </div>
       </footer>
+
+      {/* Exit Intent Modal */}
+      <Dialog open={isExitIntentModalOpen} onOpenChange={setIsExitIntentModalOpen}>
+        <DialogContent className="max-w-2xl mx-auto bg-white border-0 shadow-2xl">
+          <DialogHeader className="text-center pb-6">
+            <DialogTitle className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Бесплатно для вас: чек-лист, который спасет ваш будущий бизнес
+            </DialogTitle>
+            <DialogDescription className="text-base text-muted-foreground leading-relaxed">
+              Франчайзер показывает вам красивую презентацию, но главные риски скрываются в договоре коммерческой концессии. Мы подготовили для вас PDF-чеклист «9 рискованных пунктов в договоре франшизы», с помощью которого вы за 15 минут самостоятельно оцените, насколько предложение безопасно для вас и для ваших денег.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-6">
+            <p className="text-muted-foreground text-center">
+              Скачайте его прямо сейчас и начните переговоры с франчайзером с полным пониманием текущей ситуации.
+            </p>
+            
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="exit-email" className="text-sm font-semibold text-foreground">
+                  Ваш действующий email
+                </Label>
+                <Input
+                  id="exit-email"
+                  type="email"
+                  placeholder="example@mail.com"
+                  value={exitIntentEmail}
+                  onChange={(e) => setExitIntentEmail(e.target.value)}
+                  className="mt-2 border-2 border-muted focus:border-primary"
+                />
+              </div>
+              
+              <Button 
+                size="lg" 
+                onClick={() => {
+                  if (exitIntentEmail) {
+                    console.log('Скачивание чек-листа для:', exitIntentEmail);
+                    setIsExitIntentModalOpen(false);
+                  }
+                }}
+                disabled={!exitIntentEmail}
+                className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <Icon name="Download" size={20} className="mr-2" />
+                Скачать чек-лист бесплатно
+              </Button>
+            </div>
+            
+            <p className="text-xs text-muted-foreground text-center leading-relaxed">
+              Подписываясь, вы соглашаетесь на получение информационных email-сообщений от ООО "Гранд Макс". 
+              Вы можете отписаться в любой момент.
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
