@@ -653,16 +653,7 @@ export default function Index() {
           <p className="text-white/70 mb-6">
             Профессиональная экспертиза с 7-летним опытом
           </p>
-          <div className="flex justify-center gap-6">
-            <Button variant="ghost" onClick={() => setIsModalOpen(true)} className="text-white hover:text-white/80">
-              <Icon name="Phone" size={20} className="mr-2" />
-              Позвонить
-            </Button>
-            <Button variant="ghost" onClick={() => setIsModalOpen(true)} className="text-white hover:text-white/80">
-              <Icon name="Mail" size={20} className="mr-2" />
-              Написать
-            </Button>
-          </div>
+
         </div>
       </footer>
     </div>
