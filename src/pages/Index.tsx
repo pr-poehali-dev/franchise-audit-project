@@ -579,7 +579,7 @@ export default function Index() {
       <section className="px-4 py-16 bg-gradient-to-r from-primary to-secondary text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl md:text-3xl font-bold mb-8 animate-fade-in">
-            Не позволяйте эмоциям принимать решения размером в несколько миллионов рублей. Лучше обратись к экспертам и получи детальный разбор понравившейся тебе франшизы.
+            Не позволяйте эмоциям принимать решения размером в несколько миллионов рублей. Лучше обратитесь к экспертам и получите детальный разбор понравившейся вам франшизы.
           </h3>
           <Button 
             size="lg" 
