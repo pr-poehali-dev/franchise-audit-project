@@ -386,9 +386,7 @@ export default function Index() {
                 7+ лет экспертного опыта
               </Badge>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8">
-                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                  Перестаньте гадать.
-                </span>
+                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">Перестаньте гадать и строить предположения.</span>
                 <br />
                 <span className="text-foreground">Узнайте, окупится ли понравившаяся вам франшиза</span>
                 <br />
