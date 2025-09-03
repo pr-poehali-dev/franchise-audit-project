@@ -334,7 +334,7 @@ export default function Index() {
       <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md border-b z-50">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex justify-between items-center">
-            <div className="font-bold text-xl text-primary">Аудит Франшиз</div>
+            <div className="font-bold text-xl text-primary">Аудит Франшиз под ключ</div>
             <div className="hidden md:flex space-x-6">
               <button 
                 onClick={() => scrollToSection('hero')}
@@ -500,9 +500,7 @@ export default function Index() {
               Мы проводим полноценное расследование вместо вас. 
               <span className="text-accent">Спите спокойно</span>, пока мы проверяем.
             </h2>
-            <p className="text-3xl font-semibold text-muted-foreground max-w-3xl mx-auto">
-              Что входит в наш комплексный аудит под ключ
-            </p>
+            <p className="text-3xl font-semibold text-muted-foreground max-w-3xl mx-auto">Вот что входит в наш комплексный аудит под ключ</p>
           </div>
           <div className="grid lg:grid-cols-2 gap-8">
             {auditFeatures.map((feature, index) => (
