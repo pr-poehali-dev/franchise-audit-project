@@ -390,9 +390,7 @@ export default function Index() {
                   Перестаньте гадать.
                 </span>
                 <br />
-                <span className="text-foreground">
-                  Узнайте, окупится ли ваша франшиза
-                </span>
+                <span className="text-foreground">Узнайте, окупится ли понравившаяся вам франшиза</span>
                 <br />
                 <span className="text-muted-foreground text-xl md:text-2xl lg:text-3xl">
                   до того, как вы отдадите деньги
