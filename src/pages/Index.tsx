@@ -198,19 +198,22 @@ export default function Index() {
       name: "Максим Ховрин",
       business: "планировал открыть кофейню",
       text: "Сергей, спасибо вам! По вашей рекомендации я отказался от, казалось бы, выгодной франшизы. Ваш эксперт нашел в договоре условие об обязательной закупке кофейного зерна только у держателя франшизы по цене, выше средне-рыночной на 17%. Вы сохранили мне 3.5 млн рублей вложений и годы жизни!",
-      amount: "3.5 млн ₽"
+      amount: "3.5 млн ₽",
+      avatar: "https://cdn.poehali.dev/files/af7e808b-41bb-4716-bfb7-e5196b0d14b0.png"
     },
     {
       name: "Анна Рогозинская",
       business: "открыла салон оптики",
       text: "Заказала аудит по франшизе, которую уже почти выбрала. Вердикт был «СТОИТ», но с рекомендациями по изменению 3 пунктов в договоре. С этими правками я пошла на переговоры и смогла их отстоять! Открылась, вышла на плановую прибыль на 2 месяца раньше.",
-      amount: "2 месяца экономии"
+      amount: "2 месяца экономии",
+      avatar: "https://cdn.poehali.dev/files/673c9c4b-d32c-4531-a77f-1aae5561fb47.png"
     },
     {
       name: "Марат Искандеров",
       business: "хотел купить франшизу в сфере образования",
       text: "Ваши несколько тайных звонков франчайзеру и правильные вопросы показали всю картину целиком. Вместо обещанного бизнеса «под ключ» меня ждала невнятная консультация и пачка PDF-инструкций вместо обучения. Ваше твердое «НЕ СТОИТ» спасло мне 1,2 млн рублей.",
-      amount: "1.2 млн ₽"
+      amount: "1.2 млн ₽",
+      avatar: "https://cdn.poehali.dev/files/992432a9-d8b4-48cf-9524-8a19735c74d6.png"
     }
   ];
 
@@ -610,8 +613,16 @@ export default function Index() {
               >
                 <CardHeader>
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-xl">
-                      {testimonial.name[0]}
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-xl overflow-hidden">
+                      {testimonial.avatar ? (
+                        <img 
+                          src={testimonial.avatar} 
+                          alt={testimonial.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        testimonial.name[0]
+                      )}
                     </div>
                     <div>
                       <h4 className="font-bold text-lg">{testimonial.name}</h4>
