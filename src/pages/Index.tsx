@@ -683,13 +683,7 @@ export default function Index() {
                 onClick={() => window.open('https://t.me/analizfr_bot', '_blank')}
                 className="px-12 py-4 text-xl font-bold bg-white text-primary hover:bg-white/90 animate-scale-in shadow-2xl"
               >Получить бесплатную консультацию</Button>
-              <div className="max-w-2xl mx-auto">
-                <p className="text-sm mt-4 opacity-80">
-                  Только для тех, кто прямо сейчас нажмет кнопку, мы забронируем 3 бонуса из сферы бизнеса 
-                  на общую сумму 59,900 руб. При подписании Договора на работу с нами, вы получите 
-                  3 бизнес-бонуса абсолютно бесплатно.
-                </p>
-              </div>
+
             </div>
           </div>
         </div>
