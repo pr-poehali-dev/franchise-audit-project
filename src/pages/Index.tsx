@@ -461,7 +461,7 @@ export default function Index() {
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
               Выбирая франшизу, вы рискуете столкнуться с тем, 
-              <span className="text-destructive"> о чем умалчивают</span> на презентациях
+              <span className="text-destructive">о чем менеджеры умалчивают</span> на презентациях
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
