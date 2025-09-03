@@ -166,7 +166,7 @@ export default function Index() {
     },
     {
       title: "Итоговый отчет с вердиктом",
-      description: "Вы получаете не просто данные, а четкий вывод: «СТОИТ покупать» или «НЕ СТОИТ покупать» с аргументацией.",
+      description: "Вы получаете не просто данные, а четкий вывод: «<span class='text-green-600 font-bold'>СТОИТ</span> покупать» или «<span class='text-red-600 font-bold'>НЕ СТОИТ</span> покупать» с аргументацией.",
       icon: "FileCheck"
     }
   ];
@@ -185,7 +185,7 @@ export default function Index() {
       color: "primary"
     },
     {
-      title: "Мы по обе стороны баррикад",
+      title: "Досконально знаем, как устроен франчайзинговый бизнес",
       description: "Я, Сергей Токмаков, и моя команда сами были франчайзи. Мы знаем всю внутреннюю кухню, уловки и юридические капканы из личного опыта.",
       icon: "Shield",
       color: "secondary"
@@ -523,9 +523,9 @@ export default function Index() {
                       <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
                         {feature.title}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {feature.description}
-                      </p>
+                      <p className="text-muted-foreground leading-relaxed" 
+                         dangerouslySetInnerHTML={{ __html: feature.description }} />
+                      
                     </div>
                   </div>
                 </CardHeader>
